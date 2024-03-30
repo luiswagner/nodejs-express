@@ -1,4 +1,5 @@
 #Ignorar todos os arquivo com essas instruções
 #U - Untrack
+#A - Adicionado no repostirório local
 node_modules
 dist
