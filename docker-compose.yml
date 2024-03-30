@@ -1,0 +1,23 @@
+#Docker compose 
+#Versão do docker compose
+version: '3'
+#Montando os services e executando as instruções abaixo
+
+services:
+  app: 
+    container_name: app
+    build:
+      context: .docker/node
+      dockerfile: Dockerfile
+      args:
+       - NODE_ENV=development
+    #Executando o entrypoint.sh
+    entrypoint: .docker/node/entrypoint.sh
+    
+    #Montando os volumes
+    #Enviando nosso conteudo para dentro do container
+    volumes:
+      - .:/home/node/app
+    #Portas abertas no container. Fazendo o Bind da maquina local para o container
+    ports:
+      - 3000:3000

@@ -1,0 +1,4 @@
+#Ignorar todos os arquivo com essas instruções
+#U - Untrack
+node_modules
+dist
