@@ -3,3 +3,5 @@
 #A - Adicionado no repostirório local
 node_modules
 dist
+#Ignorar a pasta do postgres para não subir
+.docker/postgres/data

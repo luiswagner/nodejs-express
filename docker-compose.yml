@@ -13,11 +13,30 @@ services:
        - NODE_ENV=development
     #Executando o entrypoint.sh
     entrypoint: .docker/node/entrypoint.sh
-    
     #Montando os volumes
     #Enviando nosso conteudo para dentro do container
     volumes:
       - .:/home/node/app
-    #Portas abertas no container. Fazendo o Bind da maquina local para o container
+    environment:
+      - PGUSER=postgres
+      - PGHOST=db
+      - PGPASSWORD=postgres
+      - PGDATABASE=postgres
+      - PGPORT=5432 
+     #Portas abertas no container. Fazendo o Bind da maquina local para o container
     ports:
       - 3000:3000
+    #Conexão com o banco de dados Postgres 
+  db: 
+    container_name: db
+    build:
+      context: .docker/postgres
+      dockerfile: Dockerfile
+    command: postgres -c log_statement=all
+    volumes:
+      - '.docker/postgres/data:/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    ports:
+     - 5432:5432
